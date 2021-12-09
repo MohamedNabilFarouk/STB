@@ -4,7 +4,7 @@
 	<!--begin::Head-->
 	<head><base href="">
 		<meta charset="utf-8" />
-		<title>Resturant  | {{ $site_settings['title_' . LaravelLocalization::getCurrentLocale()] }}</title>
+		<title>STB  | {{ $site_settings['title_' . LaravelLocalization::getCurrentLocale()] }}</title>
 		<meta name="description" content="Craft admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
 		<meta name="keywords" content="Craft, bootstrap, Angular 10, Vue, React, Laravel, admin themes, free admin themes, bootstrap admin, bootstrap dashboard" />
 		<link rel="canonical" href="Https://preview.keenthemes.com/start" />
@@ -1997,7 +1997,7 @@
 										<div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
 											<!--begin::Menu-->
 											<div class="cursor-pointer symbol symbol-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
-												<img src="{{asset('assets/media/avatars/150-2.jpg')}}" alt="Resturant" />
+												<img src="{{asset('assets/media/avatars/150-2.jpg')}}" alt="STB" />
 											</div>
 											<!--begin::Menu-->
 											<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -2745,7 +2745,7 @@
 												<!--begin::Content-->
 												<div class="mb-3 mb-md-0 fw-bold">
 													<h4 class="text-gray-800 fw-bolder">Database Backup Process Completed!</h4>
-													<div class="fs-6 text-gray-600 pe-7">Login into Resturant Admin Dashboard to make sure the data integrity is OK</div>
+													<div class="fs-6 text-gray-600 pe-7">Login into STB Admin Dashboard to make sure the data integrity is OK</div>
 												</div>
 												<!--end::Content-->
 												<!--begin::Action-->
@@ -3106,7 +3106,7 @@
 				<!--end::Body-->
 				<!--begin::Footer-->
 				<div class="card-footer py-5 text-center" id="kt_explore_footer">
-					<a href="https://1.envato.market/EA4JP" class="btn btn-primary">Purchase Resturant</a>
+					<a href="https://1.envato.market/EA4JP" class="btn btn-primary">Purchase STB</a>
 				</div>
 				<!--end::Footer-->
 			</div>

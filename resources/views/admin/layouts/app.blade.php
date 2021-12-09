@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Resturant | {{ $site_settings['title_' . LaravelLocalization::getCurrentLocale()] }}</title>
+    <title>STB | {{ $site_settings['title_' . LaravelLocalization::getCurrentLocale()] }}</title>
     <meta name="title" content="{{ $site_settings['meta_title_' . LaravelLocalization::getCurrentLocale()] }}" />
     <meta name="description"
         content="{{ $site_settings['meta_description_' . LaravelLocalization::getCurrentLocale()] }}" />
@@ -67,7 +67,7 @@
 
             <!--begin::Wrapper-->
             <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-                        
+
                 @include('admin.includes.header')
 
                 <!--begin::Content-->
@@ -78,7 +78,7 @@
                     <div class="container">
                         @yield('content')
                     </div>
-                    
+
 
 
                     @include('admin.includes.footer')

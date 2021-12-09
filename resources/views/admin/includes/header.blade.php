@@ -43,7 +43,7 @@
                         <div class="cursor-pointer symbol symbol-40px" data-kt-menu-trigger="click"
                             data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end"
                             data-kt-menu-flip="bottom">
-                            <img src="{{ asset('admin/media/avatars/150.png') }}" alt="Resturant" />
+                            <img src="{{ asset('admin/media/avatars/150.png') }}" alt="STB" />
                         </div>
                         <!--begin::Menu-->
                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold py-4 fs-6 w-275px"
