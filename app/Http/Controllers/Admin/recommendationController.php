@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\OrderRecommendation;
 use Illuminate\Http\Request;
 use App\Recommendation;
 
@@ -113,6 +114,19 @@ class recommendationController extends Controller
 
         session() -> flash('success', trans('deleted successfully'));
         return redirect() -> route('recommendation.index');
+    }
+
+    public function getOrderRecommendation(){
+        $orders = OrderRecommendation::paginate(10);
+        // dd($orders);
+        return view('admin.OrderedRecommendation.index',compact('orders'));
+    }
+
+    public function destroyOrderRecommendation($id){
+        $order = OrderRecommendation ::find($id);
+        $order ->  delete();
+        session() -> flash('success', trans('deleted successfully'));
+        return redirect() -> route('getOrder.recommendations');
     }
 
 }

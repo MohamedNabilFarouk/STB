@@ -31,8 +31,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('dashboard', 'DashboardController@index')->name('home');
         Route::resource('/product','productController');
         Route::resource('/recommendation','recommendationController');
-        //vendor update resturant data
-        Route::get('updateresturant','ResturantController@getVendorResturant')->middleware('role:vendor')->name('updateresturant.vendor')  ;
+        Route::get('/OrderedRecommendations','recommendationController@getOrderRecommendation')->name('getOrder.recommendations');
+        Route::delete('/OrderedRecommendations/{id}','recommendationController@destroyOrderRecommendation')->name('deleteOrder.recommendations');
+
     });
 
     Route::group(['middleware' => ['role:admin|moderator','auth']],function(){

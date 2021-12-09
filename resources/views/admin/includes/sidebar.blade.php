@@ -116,6 +116,17 @@
                             </div>
 
                         </div>
+                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                            <div class="menu-item">
+                                <a class="menu-link" href="{{ route('getOrder.recommendations') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">@lang('site.OrdersRecommendations')</span>
+                                </a>
+                            </div>
+
+                        </div>
                     </div>
 
                     <!-- end recommendations -->

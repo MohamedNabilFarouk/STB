@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Recommendation;
-use App\RecommendationOrder;
+use App\OrderRecommendation;
 use Carbon\Carbon;
 use App\Http\Resources\ProductCollection;
 use BeyondCode\Vouchers\Models\Voucher;
 use Validator;
-use APP\User;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 use BeyondCode\Vouchers\Facades\vouchers as Vouchers;
 
@@ -41,13 +42,23 @@ class RecommendationController extends Controller
             return response()->json(['success'=>'false', 'error'=>'No Enough Coins']);
            }
            $data=$request->all();
-        $order= RecommendationOrder::create($data);
+           DB ::beginTransaction();
+        $order= OrderRecommendation::create($data);
+       //update user balnce
+        $user->balance -= $request->total;
+        $user->save();
+        DB ::commit();
         return response()->json(['success'=>'true', 'data'=>$order]);
         }
 
 
 
 
+    }
+
+    public function getUserOrders($id){
+        $orders = OrderRecommendation::where('user_id',$id)->with('recommendation')->paginate(10);
+        return response()->json(['success'=>'true', 'data'=>$orders]);
     }
 
     // public function getProductCategory($id){

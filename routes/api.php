@@ -38,10 +38,10 @@ Route::namespace("Api")->group(function () {
 
     Route::get('getRecommendations', 'RecommendationController@getRecommendations');
     Route::post('buyRecommendation', 'RecommendationController@buyRecommendation');
+    Route::get('getUserOrders/{id}', 'RecommendationController@getUserOrders');
 
     Route::get('getCategories/{resturant_id}', 'ProductController@getCategories');
     Route::get('getProductCategory/{id}', 'ProductController@getProductCategory');
-    Route::get('getUserOrders/{id}', 'OrderController@getUserOrders');
     Route::get('getProduct/{id}', 'ProductController@getProduct');
     Route::get('getBranches', 'BranchesController@getBranches');
     Route::get('getUserWishlist/{id}', 'UserController@getUserWishlist');
