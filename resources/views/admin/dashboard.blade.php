@@ -30,113 +30,13 @@
             <!--begin::Row-->
             <div class="row gy-5 g-xl-8">
                 <!--begin::Col-->
-                <div class="col-xxl-4">
+                <div class="col-xxl-12">
                     <!--begin::Mixed Widget 2-->
                     <div class="card card-xxl-stretch">
-                        <!--begin::Header-->
-                        <div class="card-header border-0 bg-danger py-5">
-                            <h3 class="card-title fw-bolder text-white">@lang('site.Sales Statistics')</h3>
-                            <div class="card-toolbar">
-                                <!--begin::Menu-->
-{{--                                <button type="button" class="btn btn-sm btn-icon btn-color-white btn-active-white btn-active-color- border-0 me-n3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">--}}
-                                    <!--begin::Svg Icon | path: icons/stockholm/Layout/Layout-4-blocks-2.svg-->
-                                    <span class="svg-icon svg-icon-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-{{--                                </button>--}}
-{{--                                <!--begin::Menu 3-->--}}
-{{--                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">--}}
-{{--                                    <!--begin::Heading-->--}}
-{{--                                    <div class="menu-item px-3">--}}
-{{--                                        <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">@lang('site.Payments')</div>--}}
-{{--                                    </div>--}}
-{{--                                    <!--end::Heading-->--}}
-{{--                                    <!--begin::Menu item-->--}}
-{{--                                    <div class="menu-item px-3">--}}
-{{--                                        <a href="#" class="menu-link px-3">@lang('site.create') @lang('site.Invoice')</a>--}}
-{{--                                    </div>--}}
-{{--                                    <!--end::Menu item-->--}}
-{{--                                    <!--begin::Menu item-->--}}
-{{--                                    <div class="menu-item px-3">--}}
-{{--                                        <a href="#" class="menu-link flex-stack px-3">@lang('site.create') @lang('site.Payment')--}}
-{{--                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i></a>--}}
-{{--                                    </div>--}}
-{{--                                    <!--end::Menu item-->--}}
-{{--                                    <!--begin::Menu item-->--}}
-{{--                                    <div class="menu-item px-3">--}}
-{{--                                        <a href="#" class="menu-link px-3">@lang('site.Generate Bill')</a>--}}
-{{--                                    </div>--}}
-{{--                                    <!--end::Menu item-->--}}
-{{--                                    <!--begin::Menu item-->--}}
-{{--                                    <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start" data-kt-menu-flip="center, top">--}}
-{{--                                        <a href="#" class="menu-link px-3">--}}
-{{--                                            <span class="menu-title">@lang('site.Subscription')</span>--}}
-{{--                                            <span class="menu-arrow"></span>--}}
-{{--                                        </a>--}}
-{{--                                        <!--begin::Menu sub-->--}}
-{{--                                        <div class="menu-sub menu-sub-dropdown w-175px py-4">--}}
-{{--                                            <!--begin::Menu item-->--}}
-{{--                                            <div class="menu-item px-3">--}}
-{{--                                                <a href="#" class="menu-link px-3">@lang('site.plans')</a>--}}
-{{--                                            </div>--}}
-{{--                                            <!--end::Menu item-->--}}
-{{--                                            <!--begin::Menu item-->--}}
-{{--                                            <div class="menu-item px-3">--}}
-{{--                                                <a href="#" class="menu-link px-3">@lang('site.Billing')</a>--}}
-{{--                                            </div>--}}
-{{--                                            <!--end::Menu item-->--}}
-{{--                                            <!--begin::Menu item-->--}}
-{{--                                            <div class="menu-item px-3">--}}
-{{--                                                <a href="#" class="menu-link px-3">@lang('site.Statements')</a>--}}
-{{--                                            </div>--}}
-{{--                                            <!--end::Menu item-->--}}
-{{--                                            <!--begin::Menu separator-->--}}
-{{--                                            <div class="separator my-2"></div>--}}
-{{--                                            <!--end::Menu separator-->--}}
-{{--                                            <!--begin::Menu item-->--}}
-{{--                                            <div class="menu-item px-3">--}}
-{{--                                                <div class="menu-content px-3">--}}
-{{--                                                    <!--begin::Switch-->--}}
-{{--                                                    <label class="form-check form-switch form-check-custom form-check-solid">--}}
-{{--                                                        <!--begin::Input-->--}}
-{{--                                                        <input class="form-check-input w-30px h-20px" type="checkbox" value="1" checked="checked" name="notifications" />--}}
-{{--                                                        <!--end::Input-->--}}
-{{--                                                        <!--end::Label-->--}}
-{{--                                                        <span class="form-check-label text-muted fs-6">@lang('site.Recurring')</span>--}}
-{{--                                                        <!--end::Label-->--}}
-{{--                                                    </label>--}}
-{{--                                                    <!--end::Switch-->--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                            <!--end::Menu item-->--}}
-{{--                                        </div>--}}
-{{--                                        <!--end::Menu sub-->--}}
-{{--                                    </div>--}}
-{{--                                    <!--end::Menu item-->--}}
-{{--                                    <!--begin::Menu item-->--}}
-{{--                                    <div class="menu-item px-3 my-1">--}}
-{{--                                        <a href="#" class="menu-link px-3">@lang('site.Settings')</a>--}}
-{{--                                    </div>--}}
-{{--                                    <!--end::Menu item-->--}}
-{{--                                </div>--}}
-{{--                                <!--end::Menu 3-->--}}
-                                <!--end::Menu-->
-                            </div>
-                        </div>
-                        <!--end::Header-->
+
                         <!--begin::Body-->
                         <div class="card-body p-0">
-                            <!--begin::Chart-->
-                            <div class="mixed-widget-2-chart card-rounded-bottom bg-danger" data-kt-color="danger" style="height: 200px"></div>
-                            <!--end::Chart-->
+
                             <!--begin::Stats-->
                             <div class="card-p mt-n20 position-relative">
                                 <!--begin::Row-->
@@ -156,8 +56,9 @@
                                             </svg>
                                         </span>
                                         <!--end::Svg Icon-->
-                                        <a href="" class="text-warning fw-bold fs-6">@lang('site.Weekly Sales') Count:20</a> <br />
-                                        <a href="" class="text-warning fw-bold fs-6">@lang('site.Total'): 10 &pound;</a>
+                                        <a href="" class="text-warning fw-bold fs-6">@lang('site.Recommendations') :</a> <br />
+                                        {{COUNT($recomendations)}}
+
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
@@ -170,8 +71,8 @@
                                             </svg>
                                         </span>
                                         <!--end::Svg Icon-->
-                                        <a href="#" class="text-primary fw-bold fs-6">@lang('site.New Users')</a> <br />
-                                        <a href="#" class="text-primary fw-bold fs-6">@lang('site.Count'): 10</a>
+                                        <a href="#" class="text-primary fw-bold fs-6">@lang('site.Users') : </a> <br />
+                                        {{COUNT($users)}}
                                     </div>
                                     <!--end::Col-->
                                 </div>
@@ -188,25 +89,12 @@
                                             </svg>
                                         </span>
                                         <!--end::Svg Icon-->
-                                        <a href="" class="text-danger fw-bold fs-6 mt-2">@lang('site.Pending Orders')</a>
-                                        <a href="" class="text-danger fw-bold fs-6 mt-2">@lang('site.Count'): 10</a> <br />
-                                        <a href="" class="text-danger fw-bold fs-6 mt-2">@lang('site.Total'): 10</a>
+
+                                        <a href="" class="text-danger fw-bold fs-6 mt-2">@lang('site.OrdersRecommendations'): </a> <br />
+                                        {{count($ordered)}}
                                     </div>
                                     <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col bg-light-success px-6 py-8 rounded-2">
-                                        <!--begin::Svg Icon | path: icons/stockholm/Communication/Urgent-mail.svg-->
-                                        <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                <path d="M12.7037037,14 L15.6666667,10 L13.4444444,10 L13.4444444,6 L9,12 L11.2222222,12 L11.2222222,14 L6,14 C5.44771525,14 5,13.5522847 5,13 L5,3 C5,2.44771525 5.44771525,2 6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,13 C19,13.5522847 18.5522847,14 18,14 L12.7037037,14 Z" fill="#000000" opacity="0.3" />
-                                                <path d="M9.80428954,10.9142091 L9,12 L11.2222222,12 L11.2222222,16 L15.6666667,10 L15.4615385,10 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 L9.80428954,10.9142091 Z" fill="#000000" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                        <a href="" class="text-success fw-bold fs-6 mt-2">@lang('site.Confirmed Orders')</a>
-                                        <a href="" class="text-success fw-bold fs-6 mt-2">@lang('site.Count'): 5</a> <br />
-                                        <a href="" class="text-success fw-bold fs-6 mt-2">@lang('site.Total'): 10</a>                                    </div>
-                                    <!--end::Col-->
+
                                 </div>
                                 <!--end::Row-->
                             </div>
@@ -1973,119 +1861,61 @@
                 </div> --}}
                 <!--end::Col-->
                 <!--begin::Col-->
-                <div class="col-xxl-8">
-                    <!--begin::Tables Widget 5-->
-                    <div class="card card-xxl-stretch mb-5 mb-xxl-8">
-                        <!--begin::Header-->
-                        <div class="card-header border-0 pt-5">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder fs-3 mb-1">@lang("site.Latest Products")</span>
-                                <span class="text-muted mt-1 fw-bold fs-7">@lang('site.More than') 50 @lang('site.new product')</span>
-                            </h3>
-                            <div class="card-toolbar">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bolder px-4 me-1" data-bs-toggle="tab" href="#kt_table_widget_5_tab_1">@lang('site.Month')</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1" data-bs-toggle="tab" href="#kt_table_widget_5_tab_2">@lang('site.Week')</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4" data-bs-toggle="tab" href="#kt_table_widget_5_tab_3">@lang('site.Day')</a>
-                                    </li>
-                                </ul>
+                <div class="col-xxl-12">
+
+                        <div class='col-md-12'>
+                            <h3 class="card-title fw-bolder text-Black">@lang('site.Customers')   </h3>
+                            <div class="card-body py-3">
+                                <!--begin::Table container-->
+                                <div class="table-responsive rounded">
+                                    <!--begin::Table-->
+                                    <table class="table table-hover align-middle gs-0 gy-4">
+                                        <!--begin::Table head-->
+                                        <thead>
+                                            <tr class="text-center border-3 fw-bolder text-muted bg-light">
+                                                <th class="min-w-125px">@lang('site.Name')</th>
+                                                <th class="min-w-125px">@lang('site.Email')</th>
+                                                <th class="min-w-125px">@lang('site.Balance')</th>
+                                                <!-- <th class="min-w-125px">{{__('Phone')}}</th> -->
+
+                                            </tr>
+                                        </thead>
+                                        <!--end::Table head-->
+                                        <!--begin::Table body-->
+                                        <tbody>
+
+                                    @foreach($users as $index => $c)
+                                        <tr class="text-center border-3 m-auto">
+                                            <td class="px-3">
+                                                <div class="d-flex align-items-center">
+                                                        <span class="text-muted fw-bold text-muted d-block fs-7">{{$c->name}}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="px-3">
+                                                        <span class="badge badge-light-primary fs-7 fw-bold">{{$c->email}}</span>
+                                            </td>
+                                            <td class="px-3">
+                                                        <span class="badge badge-light-primary fs-7 fw-bold">{{$c->balance}}</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
                             </div>
+                            <!--end::Table container-->
                         </div>
-                        <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body py-3">
-                            <div class="tab-content">
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade show active" id="kt_table_widget_5_tab_1">
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive">
-                                        <!--begin::Table-->
-                                        <table class="table table-hover table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr class="border-0">
-                                                    <th class="p-0 w-50px"></th>
-                                                    <th class="p-0 min-w-150px"></th>
-                                                    <th class="p-0 min-w-140px"></th>
-                                                    <th class="p-0 min-w-110px"></th>
-                                                    <th class="p-0 min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
 
-
-
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
                                     </div>
-                                    <!--end::Table-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_table_widget_5_tab_2">
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive">
-                                        <!--begin::Table-->
-                                        <table class="table table-hover table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr class="border-0">
-                                                    <th class="p-0 w-50px"></th>
-                                                    <th class="p-0 min-w-150px"></th>
-                                                    <th class="p-0 min-w-140px"></th>
-                                                    <th class="p-0 min-w-110px"></th>
-                                                    <th class="p-0 min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
 
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                    </div>
-                                    <!--end::Table-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_table_widget_5_tab_3">
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive">
-                                        <!--begin::Table-->
-                                        <table class="table table-hover table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr class="border-0">
-                                                    <th class="p-0 w-50px"></th>
-                                                    <th class="p-0 min-w-150px"></th>
-                                                    <th class="p-0 min-w-140px"></th>
-                                                    <th class="p-0 min-w-110px"></th>
-                                                    <th class="p-0 min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
 
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                    </div>
-                                    <!--end::Table-->
-                                </div>
-                                <!--end::Tap pane-->
-                            </div>
-                        </div>
-                        <!--end::Body-->
+
+
+            <!-- end USERS TABLE -->
                     </div>
                     <!--end::Tables Widget 5-->
                 </div>

@@ -234,5 +234,12 @@ return [
     'My Resturant'=>'بيانات المطعم',
 
     'Recommendations'=>'التوصيات',
+    'OrdersRecommendations'=>'توصيات تم شرائها',
+    'Customers'=>'العملاء',
+    'Name'=>'الاسم',
+    'Email'=>'البريد الاكتروني',
+    'Balance'=>'رصيد النقاط',
+    'Levels'=>'المستويات',
+    'Academy'=>'الاكاديمية',
 
 ];

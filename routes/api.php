@@ -39,6 +39,13 @@ Route::namespace("Api")->group(function () {
     Route::get('getRecommendations', 'RecommendationController@getRecommendations');
     Route::post('buyRecommendation', 'RecommendationController@buyRecommendation');
     Route::get('getUserOrders/{id}', 'RecommendationController@getUserOrders');
+    //afilliate
+
+    Route::post('genCode','affiliateController@genCode');
+    Route::post('addPoints','affiliateController@addPoints');
+    Route::get('getPoints/{user}','affiliateController@getUserPoints');
+
+
 
     Route::get('getCategories/{resturant_id}', 'ProductController@getCategories');
     Route::get('getProductCategory/{id}', 'ProductController@getProductCategory');

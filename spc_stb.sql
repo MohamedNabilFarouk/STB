@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2021 at 04:13 PM
+-- Generation Time: Dec 16, 2021 at 04:52 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -24,6 +24,48 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `academies`
+--
+
+CREATE TABLE `academies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title_ar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `des_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `des_ar` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `min_level` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `affiliates`
+--
+
+CREATE TABLE `affiliates` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `points` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `affiliates`
+--
+
+INSERT INTO `affiliates` (`id`, `user_id`, `points`, `code`, `created_at`, `updated_at`) VALUES
+(1, '1', '200', 'j66r00rQJe', '2021-12-13 14:43:23', '2021-12-13 15:06:35'),
+(2, '64', '100', 'tZ0T7xt4yP', '2021-12-13 15:06:35', '2021-12-13 15:06:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -35,6 +77,28 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `levels`
+--
+
+CREATE TABLE `levels` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title_ar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `levels`
+--
+
+INSERT INTO `levels` (`id`, `title_en`, `title_ar`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'Level 1', 'مستوي 1', 0, '2021-12-16 15:33:11', '2021-12-16 15:33:11');
 
 -- --------------------------------------------------------
 
@@ -79,7 +143,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (24, '2021_08_09_130834_create_regions_table', 4),
 (25, '2021_09_06_093223_create_resturants_table', 4),
 (26, '2021_12_07_141457_create_recommendations_table', 4),
-(27, '2021_12_08_120932_create_order_recommendations_table', 5);
+(27, '2021_12_08_120932_create_order_recommendations_table', 5),
+(28, '2021_12_13_134223_create_affiliates_table', 6),
+(29, '2021_12_16_114053_create_levels_table', 7),
+(30, '2021_12_16_114608_create_academies_table', 8);
 
 -- --------------------------------------------------------
 
@@ -101,7 +168,9 @@ CREATE TABLE `order_recommendations` (
 --
 
 INSERT INTO `order_recommendations` (`id`, `user_id`, `recommendation_id`, `total`, `created_at`, `updated_at`) VALUES
-(1, 64, 2, 100, '2021-12-09 09:13:29', '2021-12-09 09:13:29');
+(1, 64, 2, 100, '2021-12-09 09:13:29', '2021-12-09 09:13:29'),
+(4, 64, 1, 100, '2021-12-09 09:13:29', '2021-12-09 09:13:29'),
+(5, 64, 1, 100, '2021-12-09 09:13:29', '2021-12-09 09:13:29');
 
 -- --------------------------------------------------------
 
@@ -219,10 +288,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Admin', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54'),
 (2, 'moderator', 'Moderator', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54'),
-(3, 'delivery', 'Delivery', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54'),
-(4, 'kitchen', 'Kitchen', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54'),
-(5, 'customer', 'Customer', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54'),
-(6, 'vendor', 'vendor', 'resturant account', NULL, NULL);
+(5, 'customer', 'Customer', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54');
 
 -- --------------------------------------------------------
 
@@ -242,53 +308,6 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (1, 1, 'App\\User'),
-(3, 2, 'App\\User'),
-(2, 3, 'App\\User'),
-(4, 4, 'App\\User'),
-(5, 5, 'App\\User'),
-(5, 6, 'App\\User'),
-(3, 8, 'App\\User'),
-(1, 9, 'App\\User'),
-(3, 10, 'App\\User'),
-(5, 11, 'App\\User'),
-(5, 12, 'App\\User'),
-(5, 13, 'App\\User'),
-(5, 14, 'App\\User'),
-(5, 15, 'App\\User'),
-(5, 16, 'App\\User'),
-(5, 17, 'App\\User'),
-(5, 18, 'App\\User'),
-(3, 21, 'App\\User'),
-(5, 23, 'App\\User'),
-(5, 27, 'App\\User'),
-(5, 28, 'App\\User'),
-(5, 29, 'App\\User'),
-(5, 30, 'App\\User'),
-(5, 33, 'App\\User'),
-(5, 34, 'App\\User'),
-(5, 36, 'App\\User'),
-(2, 38, 'App\\User'),
-(5, 40, 'App\\User'),
-(5, 41, 'App\\User'),
-(5, 42, 'App\\User'),
-(5, 43, 'App\\User'),
-(5, 44, 'App\\User'),
-(5, 45, 'App\\User'),
-(5, 46, 'App\\User'),
-(5, 47, 'App\\User'),
-(5, 48, 'App\\User'),
-(5, 49, 'App\\User'),
-(5, 50, 'App\\User'),
-(5, 51, 'App\\User'),
-(5, 52, 'App\\User'),
-(5, 53, 'App\\User'),
-(5, 54, 'App\\User'),
-(5, 55, 'App\\User'),
-(5, 56, 'App\\User'),
-(6, 57, 'App\\User'),
-(6, 58, 'App\\User'),
-(6, 59, 'App\\User'),
-(6, 60, 'App\\User'),
 (2, 63, 'App\\User'),
 (5, 64, 'App\\User'),
 (5, 65, 'App\\User');
@@ -376,6 +395,8 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'customer',
   `balance` double DEFAULT 0,
+  `code` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `level_id` int(11) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -389,20 +410,38 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `phone`, `password`, `role`, `balance`, `remember_token`, `address`, `lat`, `lng`, `fcm_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@app.com', '2021-07-14 08:07:55', '01011941903', '$2y$10$BFw5GcloLNnHgMmWMaSBIur6zpdmzhAG/oWYrMpO8MHmqXZCXx2ke', 'admin', 0, 'EySe6nE7VqwSwSOSffLdzE1hkCsU3XxEhGkaE26vlUpLzzPrVtqWQq1xWnl5', NULL, NULL, NULL, 'e9nM4WrYTkGuT1hG4eBJgL:APA91bHvdn3HCWXyxTzkJvOmAywyVI-tYA7hzaOIdTS4Q9DYivkGDpB9J4sYKVp8YdVE0d2CnV7cveuxXXKOaRE1EjG7xQUZJr_5VT74O2sbUTHyczKYBI_XoXY4rGa0c0O_ZAGqFcVc', '2021-07-14 08:07:55', '2021-09-13 09:34:48'),
-(63, 'moderator', 'moderator@app.com', NULL, '0123456789', '$2y$10$swofGLcGzlUXoRD4t9uRFOPW5iRwDvoDWeKVb9PSWE1dU0x6b3DVS', 'customer', 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 11:32:37', '2021-12-07 11:32:37'),
-(64, 'customer', 'customer@app.com', NULL, '09876543210', '$2y$10$USxw19DyCHa76YXJkG3nxefRAQVYETO7uRcta5iQBaMofaNHJZEfu', 'customer', 150, NULL, NULL, NULL, NULL, NULL, '2021-12-07 11:33:30', '2021-12-09 09:54:03'),
-(65, 'Billy', 'billy8@billy.com', NULL, '0222222222222', '$2y$10$BMSY.dyfiKniiFc8NRugs.zyMz5NKymnpRd8GYWr37mxaCgNrfAQa', 'customer', 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 14:02:06', '2021-12-07 14:02:06');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `phone`, `password`, `role`, `balance`, `code`, `level_id`, `remember_token`, `address`, `lat`, `lng`, `fcm_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@app.com', '2021-07-14 08:07:55', '01011941903', '$2y$10$BFw5GcloLNnHgMmWMaSBIur6zpdmzhAG/oWYrMpO8MHmqXZCXx2ke', 'admin', 200, 'tDNPjt78dK', 0, 'EySe6nE7VqwSwSOSffLdzE1hkCsU3XxEhGkaE26vlUpLzzPrVtqWQq1xWnl5', NULL, NULL, NULL, 'e9nM4WrYTkGuT1hG4eBJgL:APA91bHvdn3HCWXyxTzkJvOmAywyVI-tYA7hzaOIdTS4Q9DYivkGDpB9J4sYKVp8YdVE0d2CnV7cveuxXXKOaRE1EjG7xQUZJr_5VT74O2sbUTHyczKYBI_XoXY4rGa0c0O_ZAGqFcVc', '2021-07-14 08:07:55', '2021-12-13 16:01:29'),
+(63, 'moderator', 'moderator@app.com', NULL, '0123456789', '$2y$10$swofGLcGzlUXoRD4t9uRFOPW5iRwDvoDWeKVb9PSWE1dU0x6b3DVS', 'customer', 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 11:32:37', '2021-12-07 11:32:37'),
+(64, 'customer', 'customer@app.com', NULL, '09876543210', '$2y$10$USxw19DyCHa76YXJkG3nxefRAQVYETO7uRcta5iQBaMofaNHJZEfu', 'customer', 450, 'V9nxmOGWBY', 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 11:33:30', '2021-12-13 16:03:45'),
+(65, 'Billy', 'billy8@billy.com', NULL, '0222222222222', '$2y$10$BMSY.dyfiKniiFc8NRugs.zyMz5NKymnpRd8GYWr37mxaCgNrfAQa', 'customer', 100, 'uDj5hTlfFS', 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 14:02:06', '2021-12-13 16:03:45');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `academies`
+--
+ALTER TABLE `academies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `affiliates`
+--
+ALTER TABLE `affiliates`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `levels`
+--
+ALTER TABLE `levels`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -493,22 +532,40 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `academies`
+--
+ALTER TABLE `academies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `affiliates`
+--
+ALTER TABLE `affiliates`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `levels`
+--
+ALTER TABLE `levels`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `order_recommendations`
 --
 ALTER TABLE `order_recommendations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `permissions`

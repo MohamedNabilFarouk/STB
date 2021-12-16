@@ -31,6 +31,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('dashboard', 'DashboardController@index')->name('home');
         Route::resource('/product','productController');
         Route::resource('/recommendation','recommendationController');
+        Route::resource('/academy','AcademyController');
+        Route::resource('/level','levelController');
+
         Route::get('/OrderedRecommendations','recommendationController@getOrderRecommendation')->name('getOrder.recommendations');
         Route::delete('/OrderedRecommendations/{id}','recommendationController@destroyOrderRecommendation')->name('deleteOrder.recommendations');
 

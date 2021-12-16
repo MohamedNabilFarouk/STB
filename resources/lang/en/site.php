@@ -238,4 +238,9 @@ return [
     'My Resturant'=>'My Resturant',
     // --------------------------
     'Recommendations'=>'Recommendations',
+    'OrdersRecommendations'=>'Ordered Recommendations',
+    'Customers '=>'Customers',
+    'Levels'=>'Levels',
+    'Academy'=>'Academy',
+
 ];
