@@ -8,7 +8,7 @@
             <!--begin::Page title-->
             <div class="d-flex align-items-center me-3">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">{{__('site.Levels')}}
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">{{__('site.Academy')}}
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
                     <!--end::Separator-->
@@ -31,11 +31,11 @@
         <!--begin::Header-->
         <div class="card-header rounded border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder fs-3 mb-1">{{__('site.Levels')}}</span>
+                <span class="card-label fw-bolder fs-3 mb-1">{{__('site.Academy')}}</span>
             </h3>
 
             <div class="card-toolbar">
-            <a href="{{route('level.create')}}" class="btn btn-sm btn-light-primary">
+            <a href="{{route('academy.create')}}" class="btn btn-sm btn-light-primary">
             <!--begin::Svg Icon | path: icons/stockholm/Communication/Add-user.svg-->
             <span class="svg-icon svg-icon-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -43,7 +43,7 @@
                     <path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
                 </svg>
             </span>
-            <!--end::Svg Icon-->{{__('Add')}}{{__('site.Levels')}}+</a>
+            <!--end::Svg Icon-->{{__('Add')}}{{__('site.Academy')}}+</a>
         </div>
 
         </div>
@@ -58,8 +58,13 @@
                     <thead>
                         <tr class="text-center border-3 fw-bolder text-muted bg-light">
                             <th class="ps-2 min-w-125px rounded-start">@lang('site.Title')</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Video')</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Description') @lang('site.English')</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Description') @lang('site.Arabic')</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Level')</th>
                             <th class="ps-2 min-w-125px rounded-start">@lang('site.Price')</th>
-                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Price')  @lang('site.Coins')</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Price') @lang('site.Coins')</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.category')</th>
 
                             <th class="min-w-125px rounded-end">@lang('site.actions')</th>
                         </tr>
@@ -67,19 +72,44 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @foreach ($levels as $c)
+                        @foreach ($academies as $c)
                             <tr class="text-center border-3 m-auto">
 
                             <td class="px-3">
                             <div class="d-flex align-items-center">
 
                                 <div class="d-flex flex-column">
-                                    <a href="{{ route('level.edit', $c->id) }}" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->title_en}}</a>
+                                    <a href="{{ route('academy.edit', $c->id) }}" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->title_en}}</a>
                                     <span class="text-muted fw-bold text-muted d-block fs-7">{{$c->title_ar}}</span>
                                 </div>
                             </div>
                         </td>
 
+                                <td class="px-3">
+                                    <div class="d-flex flex-column">
+                                        <a href="#"
+                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->link }}</a>
+                                    </div>
+                                </td>
+
+                                <td class="px-3">
+                                    <div class="d-flex flex-column">
+                                        <a href="#"
+                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->des_en }}</a>
+                                    </div>
+                                </td>
+                                <td class="px-3">
+                                    <div class="d-flex flex-column">
+                                        <a href="#"
+                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->des_ar }}</a>
+                                    </div>
+                                </td>
+                                <td class="px-3">
+                                    <div class="d-flex flex-column">
+                                        <a href="#"
+                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->levels->title_en ?? $c->levels->title_ar }}</a>
+                                    </div>
+                                </td>
                                 <td class="px-3">
                                     <div class="d-flex flex-column">
                                         <a href="#"
@@ -92,12 +122,18 @@
                                             class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->price_coins }}</a>
                                     </div>
                                 </td>
+                                <td class="px-3">
+                                    <div class="d-flex flex-column">
+                                        <a href="#"
+                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->category }}</a>
+                                    </div>
+                                </td>
 
 
 
                                  <td class="px-3">
 
-                                 <a href="{{ route('level.edit', $c->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                 <a href="{{ route('academy.edit', $c->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                 <!--begin::Svg Icon | path: icons/stockholm/Communication/Write.svg-->
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -108,7 +144,7 @@
                                 <!--end::Svg Icon-->
                             </a>
 
-                                  {{--  <form action="{{ route('level.destroy', $c->id) }}" method="post" id='delform'
+                                   <form action="{{ route('academy.destroy', $c->id) }}" method="post" id='delform'
                                         style="display: inline-block">
                                         @csrf
                                         @method('delete')
@@ -117,7 +153,7 @@
                                         <button type="submit" class="btn btn-defult btn-xs delete" style='width:20px'><i
                                                 class="fa fa-trash"></i> </button>
                                     </form>
-                                    --}}
+
                                 </td>
                             </tr>
                         @endforeach
@@ -132,7 +168,7 @@
         <!--begin::Body-->
     </div>
     <!--end::Tables Widget 11-->
-{!! $levels->render() !!}
+{!! $academies->render() !!}
 
 @endsection
 

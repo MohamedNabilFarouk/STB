@@ -60,8 +60,10 @@
                             <th class="ps-2 min-w-125px rounded-start">{{__('title')}}</th>
                             <th class="ps-2 min-w-125px rounded-start">{{__('Description EN')}}</th>
                             <th class="ps-2 min-w-125px rounded-start">{{__('Description AR')}}</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Price')</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.Price')  @lang('site.Coins')</th>
                             <th class="ps-2 min-w-125px rounded-start">{{__('Active')}}</th>
-                            <th class="ps-2 min-w-125px rounded-start">{{__('Show')}}</th>
+                            <th class="ps-2 min-w-125px rounded-start">@lang('site.show')  @lang('site.free')</th>
 
                             <th class="min-w-125px rounded-end">{{__('Action')}}</th>
                         </tr>
@@ -95,6 +97,20 @@
                                             class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->des_ar }}</a>
                                     </div>
                                 </td>
+
+                                <td class="px-3">
+                                    <div class="d-flex flex-column">
+                                        <a href="#"
+                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->price }}</a>
+                                    </div>
+                                </td>
+                                <td class="px-3">
+                                    <div class="d-flex flex-column">
+                                        <a href="#"
+                                            class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $c->price_coins }}</a>
+                                    </div>
+                                </td>
+
                                 <td class="px-3">
                                     <div class="d-flex flex-column">
                                         @if($c->active == 1)

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Academy;
+use App\Level;
 
 use App\Traits\imagesTrait;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,8 @@ class AcademyController extends Controller
 
     public function create()
     {
-        return view('admin.academy.create');
+        $levels = Level::all();
+        return view('admin.academy.create',compact('levels'));
     }
 
     public function store(Request $request)
@@ -37,8 +39,10 @@ class AcademyController extends Controller
             'title_ar' => 'string',
             'des_en' => 'required|string',
             'des_ar' => 'string',
-            'price' => 'required'|'numeric',
-            'min_level' => 'required'|'numeric',
+            'price' => 'required|numeric',
+            'price_coins' => 'required|numeric',
+            'level' => 'required|numeric',
+            'category' => 'required',
         ]);
         $data = $request->except(['_token','add']);
         Academy ::create($data);
@@ -54,8 +58,9 @@ class AcademyController extends Controller
     public function edit($id)
     {
         $academy = Academy::find($id);
+        $levels = Level::all();
 
-        return view('admin.academy.edit', compact('level'));
+        return view('admin.academy.edit', compact('levels','academy'));
 
     }
 
@@ -66,8 +71,11 @@ class AcademyController extends Controller
             'title_ar' => 'string',
             'des_en' => 'required|string',
             'des_ar' => 'string',
-            'price' => 'required'|'numeric',
-            'min_level' => 'required'|'numeric',
+            'price' => 'required|numeric',
+            'price_coins' => 'required|numeric',
+            'level' => 'required|numeric',
+            'category' => 'required',
+
         ]);
 
         $academy = Academy::find($id);

@@ -40,7 +40,7 @@ class UsersController extends Controller
         ]);
         // dd($data['password']);
         $data['password'] = Hash::make($data['password']);
-        
+
 if($request->role == 6){
 $data['role']= 'vendor';
 }else if($request->role == 3){
@@ -71,12 +71,12 @@ $data['role']= 'vendor';
     }
 
     public function update(Request $request,$id){
-        
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
           'phone' => ['required', 'string', 'max:255', 'unique:users,phone,'.$id],
-            
+
 
         ]);
         $user = User::find($id);
@@ -119,11 +119,14 @@ $data['role']= 'vendor';
          foreach($user_provider as $u){
             $u->delete();
          }
-         
+
          DB::commit();
         // $user->roles()->attach(['customer']);
 
         session()->flash('success', trans('deleted successfully'));
         return redirect()->route('user.index');
     }
+
+
+
 }

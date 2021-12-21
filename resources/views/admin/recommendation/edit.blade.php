@@ -52,6 +52,14 @@
                     <textarea name="des_ar" class="form-control" >{{ $recommendation->des_ar }}</textarea>
                 </div>
 
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Price')</label>
+                    <input type='number' name="price" class="form-control" value="{{ $recommendation->price }}" />
+                </div>
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label"> @lang('site.Price') @lang('site.Coins')</label>
+                    <input type='number' name="price_coins" class="form-control" value="{{ $recommendation->price_coins }}" />
+                </div>
 
 
                 <div class="form-group mb-10">
@@ -66,7 +74,7 @@
                     <div class="form-check form-switch form-check-custom form-check-solid">
                         <input class="form-check-input" type="checkbox" value="1" @if($recommendation->show == 1) checked @endif name='show' id="status" />
                         <label class="form-check-label" for="flexSwitchDefault">
-                            @lang('site.show')
+                            @lang('site.show')  @lang('site.free')
                         </label>
                     </div>
                 </div>

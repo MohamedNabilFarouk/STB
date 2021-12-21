@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2021 at 04:52 PM
+-- Generation Time: Dec 21, 2021 at 05:03 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -35,10 +35,20 @@ CREATE TABLE `academies` (
   `des_ar` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` double DEFAULT NULL,
-  `min_level` int(11) NOT NULL,
+  `price_coins` double DEFAULT NULL,
+  `category` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '''educational'' or ''strategy'' 	',
+  `level` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `academies`
+--
+
+INSERT INTO `academies` (`id`, `title_en`, `title_ar`, `des_en`, `des_ar`, `link`, `price`, `price_coins`, `category`, `level`, `created_at`, `updated_at`) VALUES
+(1, 'Academy 1', 'الاكاديميه 1', 'desc 1', 'تقاصيل 1', 'https://www.youtube.com/watch?v=xcJtL7QggTI', 300, 600, 'strategy', 3, '2021-12-19 11:47:20', '2021-12-20 15:26:19'),
+(3, 'Academy 2', 'الاكاديميه2', 'asdasd', 'asdasd', 'https://www.youtube.com/watch?v=xcJtL7QggTI', 20000, 50000, 'educational', 3, '2021-12-20 15:27:23', '2021-12-20 15:27:23');
 
 -- --------------------------------------------------------
 
@@ -89,6 +99,7 @@ CREATE TABLE `levels` (
   `title_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title_ar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` double NOT NULL,
+  `price_coins` double DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -97,8 +108,11 @@ CREATE TABLE `levels` (
 -- Dumping data for table `levels`
 --
 
-INSERT INTO `levels` (`id`, `title_en`, `title_ar`, `price`, `created_at`, `updated_at`) VALUES
-(1, 'Level 1', 'مستوي 1', 0, '2021-12-16 15:33:11', '2021-12-16 15:33:11');
+INSERT INTO `levels` (`id`, `title_en`, `title_ar`, `price`, `price_coins`, `created_at`, `updated_at`) VALUES
+(1, 'Level 1', 'مستوي 1', 0, 0, '2021-12-16 15:33:11', '2021-12-20 14:58:04'),
+(2, 'Level 2', 'مستوي 2', 500, 700, '2021-12-19 11:05:24', '2021-12-20 14:57:57'),
+(3, 'Level 3', 'مستوي 3', 750, 1000, '2021-12-19 11:05:57', '2021-12-20 14:57:46'),
+(4, 'Level 4', 'مستوي 4', 1000, 2000, '2021-12-19 11:06:16', '2021-12-20 14:57:32');
 
 -- --------------------------------------------------------
 
@@ -249,7 +263,8 @@ CREATE TABLE `recommendations` (
   `title_ar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `des_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `des_ar` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `price` double DEFAULT 100,
+  `price` double DEFAULT NULL,
+  `price_coins` double DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `active` tinyint(4) DEFAULT NULL,
   `show` tinyint(4) DEFAULT NULL,
@@ -261,10 +276,10 @@ CREATE TABLE `recommendations` (
 -- Dumping data for table `recommendations`
 --
 
-INSERT INTO `recommendations` (`id`, `title_en`, `title_ar`, `des_en`, `des_ar`, `price`, `image`, `active`, `show`, `created_at`, `updated_at`) VALUES
-(2, 'rcom 1', 'توصية 1', 'asdasd', 'شسيشسي', 100, 'qLprRCT6fp62LlgjNNEFrb3p4FPiTDeB2wJsFvcy.jpg', 1, 1, '2021-12-07 15:40:16', '2021-12-08 10:31:23'),
-(3, 'rcom 2', 'توصية 2', 'sdasd', 'شسيشسيشس', 100, 'TGjLzef3QLd98hex5WAYpLXGuWOEIeJERryWE1RB.jpg', 1, NULL, '2021-12-08 11:14:49', '2021-12-08 11:37:44'),
-(4, 'rcom 3', 'توصية 3', 'adasd', 'asdasd', 100, 'EGYX0J1MUq7mAxQfMw987f0vBpd06BVkWYqiAdog.jpg', 1, NULL, '2021-12-08 11:44:53', '2021-12-08 11:44:53');
+INSERT INTO `recommendations` (`id`, `title_en`, `title_ar`, `des_en`, `des_ar`, `price`, `price_coins`, `image`, `active`, `show`, `created_at`, `updated_at`) VALUES
+(2, 'rcom 1', 'توصية 1', 'asdasd', 'شسيشسي', 100, 300, 'qLprRCT6fp62LlgjNNEFrb3p4FPiTDeB2wJsFvcy.jpg', 1, 1, '2021-12-07 15:40:16', '2021-12-21 15:11:51'),
+(3, 'rcom 2', 'توصية 2', 'sdasd', 'شسيشسيشس', 100, 400, 'TGjLzef3QLd98hex5WAYpLXGuWOEIeJERryWE1RB.jpg', 1, NULL, '2021-12-08 11:14:49', '2021-12-21 15:11:43'),
+(4, 'rcom 3', 'توصية 3', 'adasd', 'asdasd', 100, 300, 'EGYX0J1MUq7mAxQfMw987f0vBpd06BVkWYqiAdog.jpg', 1, NULL, '2021-12-08 11:44:53', '2021-12-21 15:11:32');
 
 -- --------------------------------------------------------
 
@@ -287,7 +302,6 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Admin', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54'),
-(2, 'moderator', 'Moderator', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54'),
 (5, 'customer', 'Customer', NULL, '2021-07-14 08:07:54', '2021-07-14 08:07:54');
 
 -- --------------------------------------------------------
@@ -308,7 +322,6 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (1, 1, 'App\\User'),
-(2, 63, 'App\\User'),
 (5, 64, 'App\\User'),
 (5, 65, 'App\\User');
 
@@ -396,11 +409,12 @@ CREATE TABLE `users` (
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'customer',
   `balance` double DEFAULT 0,
   `code` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `level_id` int(11) NOT NULL,
+  `level_id` int(11) NOT NULL DEFAULT 1,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lng` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vip` tinyint(1) NOT NULL DEFAULT 0,
+  `from` timestamp NULL DEFAULT NULL,
+  `to` timestamp NULL DEFAULT NULL,
   `fcm_token` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -410,11 +424,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `phone`, `password`, `role`, `balance`, `code`, `level_id`, `remember_token`, `address`, `lat`, `lng`, `fcm_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@app.com', '2021-07-14 08:07:55', '01011941903', '$2y$10$BFw5GcloLNnHgMmWMaSBIur6zpdmzhAG/oWYrMpO8MHmqXZCXx2ke', 'admin', 200, 'tDNPjt78dK', 0, 'EySe6nE7VqwSwSOSffLdzE1hkCsU3XxEhGkaE26vlUpLzzPrVtqWQq1xWnl5', NULL, NULL, NULL, 'e9nM4WrYTkGuT1hG4eBJgL:APA91bHvdn3HCWXyxTzkJvOmAywyVI-tYA7hzaOIdTS4Q9DYivkGDpB9J4sYKVp8YdVE0d2CnV7cveuxXXKOaRE1EjG7xQUZJr_5VT74O2sbUTHyczKYBI_XoXY4rGa0c0O_ZAGqFcVc', '2021-07-14 08:07:55', '2021-12-13 16:01:29'),
-(63, 'moderator', 'moderator@app.com', NULL, '0123456789', '$2y$10$swofGLcGzlUXoRD4t9uRFOPW5iRwDvoDWeKVb9PSWE1dU0x6b3DVS', 'customer', 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 11:32:37', '2021-12-07 11:32:37'),
-(64, 'customer', 'customer@app.com', NULL, '09876543210', '$2y$10$USxw19DyCHa76YXJkG3nxefRAQVYETO7uRcta5iQBaMofaNHJZEfu', 'customer', 450, 'V9nxmOGWBY', 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 11:33:30', '2021-12-13 16:03:45'),
-(65, 'Billy', 'billy8@billy.com', NULL, '0222222222222', '$2y$10$BMSY.dyfiKniiFc8NRugs.zyMz5NKymnpRd8GYWr37mxaCgNrfAQa', 'customer', 100, 'uDj5hTlfFS', 0, NULL, NULL, NULL, NULL, NULL, '2021-12-07 14:02:06', '2021-12-13 16:03:45');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `phone`, `password`, `role`, `balance`, `code`, `level_id`, `remember_token`, `address`, `vip`, `from`, `to`, `fcm_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@app.com', '2021-07-14 08:07:55', '01011941903', '$2y$10$BFw5GcloLNnHgMmWMaSBIur6zpdmzhAG/oWYrMpO8MHmqXZCXx2ke', 'admin', 200, 'tDNPjt78dK', 1, 'EySe6nE7VqwSwSOSffLdzE1hkCsU3XxEhGkaE26vlUpLzzPrVtqWQq1xWnl5', NULL, 0, NULL, NULL, 'e9nM4WrYTkGuT1hG4eBJgL:APA91bHvdn3HCWXyxTzkJvOmAywyVI-tYA7hzaOIdTS4Q9DYivkGDpB9J4sYKVp8YdVE0d2CnV7cveuxXXKOaRE1EjG7xQUZJr_5VT74O2sbUTHyczKYBI_XoXY4rGa0c0O_ZAGqFcVc', '2021-07-14 08:07:55', '2021-12-13 16:01:29'),
+(64, 'customer', 'customer@app.com', NULL, '09876543210', '$2y$10$USxw19DyCHa76YXJkG3nxefRAQVYETO7uRcta5iQBaMofaNHJZEfu', 'customer', 450, 'V9nxmOGWBY', 1, NULL, NULL, 0, NULL, NULL, NULL, '2021-12-07 11:33:30', '2021-12-13 16:03:45'),
+(65, 'Billy', 'billy8@billy.com', NULL, '0222222222222', '$2y$10$BMSY.dyfiKniiFc8NRugs.zyMz5NKymnpRd8GYWr37mxaCgNrfAQa', 'customer', 1000, 'uDj5hTlfFS', 4, NULL, NULL, 1, '2021-12-22 15:49:24', '2021-12-30 15:49:24', NULL, '2021-12-07 14:02:06', '2021-12-21 15:49:24');
 
 --
 -- Indexes for dumped tables
@@ -535,7 +548,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `academies`
 --
 ALTER TABLE `academies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `affiliates`
@@ -553,7 +566,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `levels`
 --
 ALTER TABLE `levels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`

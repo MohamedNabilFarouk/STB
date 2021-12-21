@@ -56,6 +56,17 @@
 
 
                 <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Price')</label>
+                    <input type='number' name="price" class="form-control" value="{{ old('price') }}" />
+                </div>
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label"> @lang('site.Price') @lang('site.Coins')</label>
+                    <input type='number' name="price_coins" class="form-control" value="{{ old('price_coins') }}" />
+                </div>
+
+
+
+                <div class="form-group mb-10">
                     <div class="form-check form-switch form-check-custom form-check-solid">
                         <input class="form-check-input" type="checkbox" value="1" name='active' id="status" />
                         <label class="form-check-label" for="flexSwitchDefault">
@@ -67,10 +78,13 @@
                     <div class="form-check form-switch form-check-custom form-check-solid">
                         <input class="form-check-input" type="checkbox" value="1" name='show' id="status" />
                         <label class="form-check-label" for="flexSwitchDefault">
-                            @lang('site.show')
+                            @lang('site.show')  @lang('site.free')
                         </label>
                     </div>
                 </div>
+
+
+
                 <div class="form-group">
                     <label for="exampleFormControlInput1" class="required form-label">@lang('site.Image') </label>
                     <input class="image_name" type="file" name="image" value="">

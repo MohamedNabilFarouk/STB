@@ -62,10 +62,8 @@ class levelController extends Controller
         $data = $request -> validate([
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
-            'price' => 'required'|'numeric',
-
+            'price' => 'required|numeric',
         ]);
-
         $level = Level::find($id);
         $data = $request->except(['_token','add']);
 
@@ -82,18 +80,18 @@ class levelController extends Controller
         return redirect() -> route('level.index');
     }
 
-    public function destroy($id)
-    {
-        $level = Level ::find($id);
+    // public function destroy($id)
+    // {
+    //     $level = Level ::find($id);
 
-        DB::beginTransaction();
-        $level ->  delete();
+    //     DB::beginTransaction();
+    //     $level ->  delete();
 
-        DB::commit();
+    //     DB::commit();
 
-        session() -> flash('success', trans('deleted successfully'));
-        return redirect() -> route('level.index');
-    }
+    //     session() -> flash('success', trans('deleted successfully'));
+    //     return redirect() -> route('level.index');
+    // }
 
 
 

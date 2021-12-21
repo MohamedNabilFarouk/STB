@@ -242,5 +242,11 @@ return [
     'Customers '=>'Customers',
     'Levels'=>'Levels',
     'Academy'=>'Academy',
+    'Level'=>'Level',
+    'Video'=>'Video',
+    'Coins'=>'Coins',
+    'free'=>'Free',
+    'show'=>'Show',
+    'active'=>'Active',
 
 ];

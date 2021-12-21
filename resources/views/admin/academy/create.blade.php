@@ -8,7 +8,7 @@
             <!--begin::Page title-->
             <div class="d-flex align-items-center me-3">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">@lang('site.Levels')
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">@lang('site.Academy')
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
                     <!--end::Separator-->
@@ -32,7 +32,7 @@
     <div class="container-fluid page__container p-2">
 
         <div class="card rounded card-form__body card-body shadow-lg">
-            <form method="post" action="{{ route('level.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('academy.store') }}" enctype="multipart/form-data">
                 @csrf
 
 
@@ -45,15 +45,62 @@
                     <input type='text' name="title_ar" class="form-control" value="{{ old('title_ar') }}" />
                 </div>
 
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Description')
+                        @lang('site.in English')</label>
+                    <input type='text' name="des_en" class="form-control" value="{{ old('des_en') }}" />
+                </div>
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Description')
+                        @lang('site.in Arabic')</label>
+                    <input type='text' name="des_ar" class="form-control" value="{{ old('des_ar') }}" />
+                </div>
+
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Video') </label>
+                    <input type='text' name="link" class="form-control" value="{{ old('link') }}" />
+                </div>
 
                 <div class="form-group mb-10">
                     <label for="exampleFormControlInput1" class="required form-label">@lang('site.Price')</label>
                     <input type='number' name="price" class="form-control" value="{{ old('price') }}" />
                 </div>
+
                 <div class="form-group mb-10">
                     <label for="exampleFormControlInput1" class="required form-label"> @lang('site.Price') @lang('site.Coins')</label>
                     <input type='number' name="price_coins" class="form-control" value="{{ old('price_coins') }}" />
                 </div>
+
+
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.category')</label>
+
+                        <select class="form-control"  name='category'>
+
+
+                                    <option value='educational'>Educational</option>
+                                    <option value='strategy'>Strategy</option>
+
+
+                        </select>
+                    </div>
+
+
+
+
+                <div class="form-group mb-10">
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Level')</label>
+
+                        <select class="form-control"  name='level'>
+                            @foreach($levels as $r)
+
+                                    <option value='{{$r->id}}'> {{$r->title_en ?? $r->title_ar}}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
+
+
 
 
 

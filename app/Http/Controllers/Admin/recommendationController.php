@@ -36,6 +36,8 @@ class recommendationController extends Controller
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
             'image' => 'required',
+            'price' => 'required|numeric',
+            'price_coins' => 'required|numeric',
 
 
         ]);
@@ -71,7 +73,8 @@ class recommendationController extends Controller
         $data = $request -> validate([
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
-            // 'image' => 'required',
+            'price' => 'required|numeric',
+            'price_coins' => 'required|numeric',
         ]);
 
         $recommendation = Recommendation::find($id);

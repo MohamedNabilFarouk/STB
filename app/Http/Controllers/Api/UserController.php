@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Package;
+use App\Level;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Wishlist;
@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\SiteSetting;
- 
+use Illuminate\Support\Carbon;
+
 
 
 class UserController extends Controller
@@ -87,23 +88,23 @@ class UserController extends Controller
             'email' => [ 'string', 'email', 'max:255', 'unique:users'],
             'phone' => [ 'string', 'max:255', 'unique:users'],
         ]);
-     
-        
-            
-        
-        if ($validator->fails()) {    
+
+
+
+
+        if ($validator->fails()) {
             return response()->json(['success' => 'false', 'error' => $validator->messages()]);
         } else {
-            
+
             $data =$request->all();
             if(isset($request->password)){
                 if (Hash::check($request->old_password , $user->password)){
-              $data['password'] = Hash::make($request->password);          
+              $data['password'] = Hash::make($request->password);
                 }else{
                     return response()->json(['success' => 'false', 'error' => 'Old password not true']);
                 }
             }
-            
+
             $user = User::find($request->user_id);
             $user->update($data);
             return response()->json(['success' => 'true', 'data' => $user]);
@@ -114,6 +115,75 @@ class UserController extends Controller
         $setings=  SiteSetting::select('hot_line')->first();
         return response()->json(['success' => 'true', 'data' => $setings]);
 
+    }
+
+
+    public function upgradeLevel(Request $request){
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+           'level'=>'required',
+        ]);
+        if ($validator->fails()) {
+
+            return response()->json(['success' => 'false', 'error' => $validator->messages()]);
+        } else {
+            $user = User::find($request->user_id);
+            $level = Level::find($request->level);
+if($request->payByCoins == 1){
+
+    // pay by coins
+    if($level->price_coins <= $user->balance){
+        $user->level_id = $request->level;
+        $user->balance -= $level->price_coins;
+        $user->save();
+        }else{
+            return response()->json(['success' => 'false', 'error' => 'No Enough Coins']);
+        }
+        // end pay by coins
+
+}else{
+    // pay by visa
+
+        $user->level_id = $request->level;
+        $user->save();
+
+    return 'paybyvisa';
+
+    // end pay by visa
+}
+
+
+
+        }
+        return response()->json(['success' => 'true' , 'data'=>$user]);
+    }
+
+
+    public function buyVip(Request $request){
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'vip' => 'required',
+            'from' => 'required',
+            'to' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+
+            return response()->json(['success' => 'false', 'error' => $validator->messages()]);
+        } else {
+            // payment for vip ......
+            $user=User::find($request->user_id);
+            // if paid
+            $user->vip = 1;
+
+            $user->from =  Carbon::createFromFormat('Y-m-d', $request->from)->toDateTimeString();
+            $user->to =  Carbon::createFromFormat('Y-m-d', $request->to)->toDateTimeString();
+            $user->save();
+            return response()->json(['success' => 'true' , 'data'=>$user]);
+            // if not paid
+            return response()->json(['success' => 'false']);
+
+        }
     }
 
 } //end of controller

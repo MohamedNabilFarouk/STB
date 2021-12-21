@@ -44,6 +44,8 @@ Route::namespace("Api")->group(function () {
     Route::post('genCode','affiliateController@genCode');
     Route::post('addPoints','affiliateController@addPoints');
     Route::get('getPoints/{user}','affiliateController@getUserPoints');
+    Route::post('upgrade','UserController@upgradeLevel');
+    Route::post('buyVip','UserController@buyVip');
 
 
 
