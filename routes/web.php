@@ -33,7 +33,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::resource('/recommendation','recommendationController');
         Route::resource('/academy','AcademyController');
         Route::resource('/level','levelController');
-
+        Route::resource('/vip','VipController');
+        Route::resource('/currency','CurrencyController');
         Route::get('/OrderedRecommendations','recommendationController@getOrderRecommendation')->name('getOrder.recommendations');
         Route::delete('/OrderedRecommendations/{id}','recommendationController@destroyOrderRecommendation')->name('deleteOrder.recommendations');
 
@@ -48,7 +49,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::put('bookedPackage/{id}','packageController@updateBookingStatus')->name('updateBookingStatus');
         Route::resource('/banner','bannerController')->except(['create', 'show', 'destroy']);
         Route::resource('/slider','SliderController')->except(['create', 'show', 'destroy']);
-        Route::resource('/branch','BranchController');
+
         Route::resource('/discount','DiscountController');
         Route::get('catProduct/{id}','DiscountController@getCategoryProduct');
         // Route::get('createCopon/{id}','productController@createCopon')->name('copon.create');

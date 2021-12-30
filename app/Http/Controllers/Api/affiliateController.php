@@ -88,11 +88,11 @@ DB::commit();
 
     public function getUserPoints($user_id){
 
-        $user = Affiliate::where('user_id',$user_id)->first();
+        $user = User::where('id',$user_id)->first();
 
         if(isset($user)){
             return response()->json(['success'=>'true',
-            'data'=>$user]);
+            'data'=>$user->balance]);
         }else{
 
             return response()->json(['success'=>'false',

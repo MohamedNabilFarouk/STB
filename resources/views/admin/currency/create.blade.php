@@ -8,7 +8,7 @@
             <!--begin::Page title-->
             <div class="d-flex align-items-center me-3">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">@lang('site.maincategory')
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">@lang('site.currency')
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
                     <!--end::Separator-->
@@ -32,35 +32,21 @@
     <div class="container-fluid page__container p-2">
 
         <div class="card rounded card-form__body card-body shadow-lg">
-            <form method="post" action="{{ route('maincategories.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('currency.store') }}" enctype="multipart/form-data">
                 @csrf
 
 
                 <div class="form-group mb-10">
-                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.name') @lang('site.in
-                        English')</label>
-                    <input type='text' name="name_en" class="form-control" value="{{ old('name_en') }}" />
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.name')  </label>
+                    <input type='text' name="name" class="form-control" value="{{ old('name') }}" />
                 </div>
                 <div class="form-group mb-10">
-                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.name') @lang('site.in
-                        Arabic') </label>
-                    <input type='text' name="name_ar" class="form-control" value="{{ old('name_ar') }}" />
+                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.code') </label>
+                    <input type='text' name="code" class="form-control" value="{{ old('code') }}" />
                 </div>
 
 
 
-                <div class="form-group mb-10">
-                    <div class="form-check form-switch form-check-custom form-check-solid">
-                        <input class="form-check-input" type="checkbox" value="1" name='status' id="status" />
-                        <label class="form-check-label" for="flexSwitchDefault">
-                            @lang('site.status')
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Image') </label>
-                    <input class="image_name" type="file" name="image" value="">
-                </div>
 
 
 
@@ -71,5 +57,5 @@
         </div>
     </div>
     <!-- // END drawer-layout__content -->
-
+    </div>
 @stop

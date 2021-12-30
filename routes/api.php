@@ -36,19 +36,28 @@ Route::group([
 
 Route::namespace("Api")->group(function () {
 
-    Route::get('getRecommendations', 'RecommendationController@getRecommendations');
+    Route::get('getRecommendations/{user_id}', 'RecommendationController@getRecommendations');
     Route::post('buyRecommendation', 'RecommendationController@buyRecommendation');
+    Route::post('buyAcademy', 'AcademyController@buyAcademy');
     Route::get('getUserOrders/{id}', 'RecommendationController@getUserOrders');
+
     //afilliate
 
-    Route::post('genCode','affiliateController@genCode');
-    Route::post('addPoints','affiliateController@addPoints');
+    // Route::post('genCode','affiliateController@genCode');
+    // Route::post('addPoints','affiliateController@addPoints');
     Route::get('getPoints/{user}','affiliateController@getUserPoints');
     Route::post('upgrade','UserController@upgradeLevel');
     Route::post('buyVip','UserController@buyVip');
+    Route::post('addPoints','UserController@addPoints');
+    Route::post('updateVip','UserController@updateVip');
 
-
-
+//get levels
+    Route::get('getLevels', 'LevelController@getlevels');
+//get vip
+    Route::get('getVips', 'VipController@getvips');
+//get academy
+    Route::get('getAcademy/{user_id}', 'AcademyController@getAcademies');
+////////////////////////////////////////////////////////////////////////////////////////////
     Route::get('getCategories/{resturant_id}', 'ProductController@getCategories');
     Route::get('getProductCategory/{id}', 'ProductController@getProductCategory');
     Route::get('getProduct/{id}', 'ProductController@getProduct');

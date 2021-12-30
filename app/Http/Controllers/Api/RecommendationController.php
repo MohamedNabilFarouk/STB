@@ -19,8 +19,20 @@ use BeyondCode\Vouchers\Facades\vouchers as Vouchers;
 class RecommendationController extends Controller
 {
     //
-    public function getRecommendations(){
-            $Recommendation =  Recommendation::where('active',1)->get();
+    public function getRecommendations($user_id){
+            $Recommendation =  Recommendation::with(array('user' => function($query) use ($user_id) {
+                $query->where([['service', 'recommendation'],['user_id',$user_id]]);
+           }))->get();
+            foreach($Recommendation as $index=>$r){
+                // $data[] = $r;
+            foreach($r->user as $u){
+                    if(($u->id ==  $user_id)){
+                        $Recommendation[$index]['is_buy'] = 1;
+                    }else{
+                        $Recommendation[$index]['is_buy'] = 0;
+                    }
+            }
+            }
             return response()->json(['success'=>'true', 'data'=>$Recommendation]);
     }
 
@@ -29,7 +41,7 @@ class RecommendationController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id'=>'required',
             'recommendation_id'=>'required',
-            'total'=>'required',
+            'payByCoins'=>'required',
         ]);
 
         if ($validator->fails()) {
@@ -38,21 +50,43 @@ class RecommendationController extends Controller
 
         } else {
            $user = User::find($request->user_id);
-           if($user->balance < $request->total){
+           $recommendation =Recommendation::find($request->recommendation_id);
+           $data=[
+            'user_id'=>$request->user_id,
+           'service'=>'recommendation',
+           'service_id'=>$request->recommendation_id,
+
+        ];
+           if($request->payByCoins == 1){
+
+    // pay by coins
+           if($user->balance >= $recommendation->price_coins){
+
+                        $data['type']='Coins';
+                        $data['total']=$recommendation->price_coins;
+                        DB ::beginTransaction();
+                    $order= OrderRecommendation::create($data);
+                    //update user balnce
+                    $user->balance -= $recommendation->price_coins;
+                    $user->save();
+                    DB ::commit();
+           }else{
             return response()->json(['success'=>'false', 'error'=>'No Enough Coins']);
            }
-           $data=$request->all();
-           DB ::beginTransaction();
-        $order= OrderRecommendation::create($data);
-       //update user balnce
-        $user->balance -= $request->total;
-        $user->save();
-        DB ::commit();
-        return response()->json(['success'=>'true', 'data'=>$order]);
+
+        }else{
+            // pay by visa
+
+                $data['type']='Mony';
+                $data['total']=$recommendation->price;
+
+                $order= OrderRecommendation::create($data);
+                return 'paybyvisa';
+            // end pay by visa
         }
 
-
-
+        return response()->json(['success'=>'true', 'data'=>$order]);
+        }
 
     }
 

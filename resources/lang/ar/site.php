@@ -247,6 +247,24 @@ return [
     'Free'=>'مجاني',
     'show'=>'عرض',
     'active'=>'نشط',
+    'Action'=>'Action',
+    'Status'=>'Status',
+    'Openning Time'=>'Openning Time',
+    'Take Profit'=>'Take Profit',
+    'Stop Loss'=>'Stop Loss',
+    'Profit Loss'=>'Profit Loss',
+    'Trade Result'=>'Trade Result',
+    'Trade Probability'=>'Trade Probability',
+    'Time Frame'=>'Time Frame',
+    'Comment'=>'Comment',
+    'currencies'=>'العملات',
+    'currency'=>'العملة',
+    'code'=>'اختصار',
+    'symbol'=>'الرمز',
+    'vip'=>'Vip',
+    'months_no'=>'عدد الشهور',
+
+
 
 
 

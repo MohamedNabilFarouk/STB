@@ -12,4 +12,17 @@ class Academy extends Model
     public function levels(){
         return $this->belongsTo(Level::class,'level','id');
     }
+    public function order(){
+
+        return $this->belongsTo(OrderRecommendation::class,'service_id');
+    }
+
+    public function user(){
+        // dd($this->order());
+        // if($this->order()->service){
+            return $this->belongsToMany(User::class,'order_recommendations','service_id','user_id');
+        // }
+
+    }
+
 }

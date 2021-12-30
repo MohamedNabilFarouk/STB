@@ -248,5 +248,23 @@ return [
     'free'=>'Free',
     'show'=>'Show',
     'active'=>'Active',
+    'Action'=>'Action',
+    'Status'=>'Status',
+    'Openning Time'=>'Openning Time',
+    'Take Profit'=>'Take Profit',
+    'Stop Loss'=>'Stop Loss',
+    'Profit Loss'=>'Profit Loss',
+    'Trade Result'=>'Trade Result',
+    'Trade Probability'=>'Trade Probability',
+    'Time Frame'=>'Time Frame',
+    'Comment'=>'Comment',
+    'currencies'=>'Currencies',
+    'currency'=>'Currency',
+    'code'=>'Code',
+    'symbol'=>'Symbol',
+    'vip'=>'Vip',
+    'months_no'=>'Number Of Months',
+
+
 
 ];

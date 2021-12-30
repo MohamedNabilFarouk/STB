@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Currency;
 use App\Http\Controllers\Controller;
 use App\OrderRecommendation;
 use Illuminate\Http\Request;
 use App\Recommendation;
+
 
 use App\Traits\imagesTrait;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +28,9 @@ class recommendationController extends Controller
 
     public function create()
     {
-        return view('admin.recommendation.create');
+        $currency = Currency::all();
+
+        return view('admin.recommendation.create',compact('currency'));
     }
 
     public function store(Request $request)
@@ -34,12 +38,8 @@ class recommendationController extends Controller
         // dd($request);
         $data = $request -> validate([
             'title_en' => 'required|string',
-            'title_ar' => 'required|string',
-            'image' => 'required',
             'price' => 'required|numeric',
             'price_coins' => 'required|numeric',
-
-
         ]);
         $data = $request->except(['_token','add']);
 
@@ -63,8 +63,9 @@ class recommendationController extends Controller
     public function edit($id)
     {
         $recommendation = Recommendation::find($id);
+        $currency = Currency::all();
 
-        return view('admin.recommendation.edit', compact('recommendation'));
+        return view('admin.recommendation.edit', compact('recommendation','currency'));
 
     }
 
@@ -72,7 +73,6 @@ class recommendationController extends Controller
     {
         $data = $request -> validate([
             'title_en' => 'required|string',
-            'title_ar' => 'required|string',
             'price' => 'required|numeric',
             'price_coins' => 'required|numeric',
         ]);
@@ -120,8 +120,8 @@ class recommendationController extends Controller
     }
 
     public function getOrderRecommendation(){
-        $orders = OrderRecommendation::paginate(10);
-        // dd($orders);
+        $orders = OrderRecommendation::where('service','recommendation')->paginate(10);
+        //  dd($orders);
         return view('admin.OrderedRecommendation.index',compact('orders'));
     }
 

@@ -85,7 +85,7 @@
 
                         <td class="px-3">
 
-                       <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->recommendation->title_en ?? ''}}</span>
+                       <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->services->title_en ?? ''}}</span>
 
                        </td>
 
@@ -93,7 +93,7 @@
 
                         <td class="px-3">
 
-                       <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->total}}</span>
+                       <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->total}} @if($c->type == 'Coins') @lang('site.Coins') @else @lang('site.LE')@endif</span>
 
                        </td>
 

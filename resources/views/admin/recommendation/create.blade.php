@@ -38,18 +38,25 @@
 
                 <div class="form-group mb-10">
                     <label for="exampleFormControlInput1" class="required form-label">@lang('site.Title') @lang('site.in English')</label>
-                    <input type='text' name="title_en" class="form-control" value="{{ old('title_en') }}" />
+                    {{-- <input type='text' name="title_en" class="form-control" value="{{ old('title_en') }}" /> --}}
+                    <select class="form-control"  name='title_en'>
+                        @foreach ( $currency as $c )
+                        <option value='{{$c->name}}'>{{$c->name}}</option>
+
+                        @endforeach
+
+                    </select>
                 </div>
-                <div class="form-group mb-10">
+                {{-- <div class="form-group mb-10">
                     <label for="exampleFormControlInput1" class="required form-label">@lang('site.Title') @lang('site.in Arabic') </label>
                     <input type='text' name="title_ar" class="form-control" value="{{ old('title_ar') }}" />
-                </div>
+                </div> --}}
                 <div class="form-group mb-10">
                     <label for="exampleFormControlInput1" class="required form-label">@lang('site.Description') @lang('site.in English') </label>
                     <textarea name="des_en" class="form-control" >{{ old('des_en') }}</textarea>
                 </div>
                 <div class="form-group mb-10">
-                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Description') @lang('site.in Arabic') </label>
+                    <label for="exampleFormControlInput1" class="form-label">@lang('site.Description') @lang('site.in Arabic') </label>
                     <textarea name="des_ar" class="form-control" >{{ old('des_ar') }}</textarea>
                 </div>
 
@@ -66,14 +73,7 @@
 
 
 
-                <div class="form-group mb-10">
-                    <div class="form-check form-switch form-check-custom form-check-solid">
-                        <input class="form-check-input" type="checkbox" value="1" name='active' id="status" />
-                        <label class="form-check-label" for="flexSwitchDefault">
-                            @lang('site.active')
-                        </label>
-                    </div>
-                </div>
+
                 <div class="form-group mb-10">
                     <div class="form-check form-switch form-check-custom form-check-solid">
                         <input class="form-check-input" type="checkbox" value="1" name='show' id="status" />
@@ -85,19 +85,68 @@
 
 
 
-                <div class="form-group">
-                    <label for="exampleFormControlInput1" class="required form-label">@lang('site.Image') </label>
-                    <input class="image_name" type="file" name="image" value="">
-                </div>
 
-
-
-                <div class="text-right mb-5">
-                    <input type="submit" name="add" class="btn btn-success" value="@lang('site.add')">
-                </div>
-            </form>
         </div>
+<br>
+        <div class="card rounded card-form__body card-body shadow-lg">
+            <div class='row'>
+            <div class="form-group mb-10 col-md-3">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Action') </label>
+                <select class="form-control"  name='action'>
+                    <option value='SELL'>SELL</option>
+                    <option value='BUY'>BUY</option>
+        </select>
+            </div>
+            <div class="form-group mb-10 col-md-3">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Status') </label>
+                <select class="form-control"  name='status'>
+                            <option value='Active'>Active</option>
+                            <option value='Closed'>Closed</option>
+                </select>
+
+
+            </div>
+            <div class="form-group mb-10 col-md-4">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Openning Time') </label>
+                <input type='datetime-local' name="opening_time" class="form-control" value="{{ old('opening_time') }}" />
+            </div>
+            <div class="form-group mb-10 col-md-4">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Take Profit') 1 </label>
+                <input type='text' name="take_profit1" class="form-control" value="{{ old('take_profit1') }}" />
+            </div>
+            <div class="form-group mb-10 col-md-4">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Take Profit')2</label>
+                <input type='text' name="take_profit2" class="form-control" value="{{ old('take_profit2') }}" />
+            </div>
+            <div class="form-group mb-10 col-md-4">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Take Profit') 3</label>
+                <input type='text' name="take_profit3" class="form-control" value="{{ old('take_profit3') }}" />
+            </div>
+            <div class="form-group mb-10 col-md-6">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Stop Loss') </label>
+                <input type='text' name="stop_loss" class="form-control" value="{{ old('stop_loss') }}" />
+            </div>
+
+            <div class="form-group mb-10 col-md-6">
+                <label for="exampleFormControlInput1" class="required form-label">@lang('site.Trade Result') </label>
+                <input type='text' name="trade_result" class="form-control" value="{{ old('trade_result') }}" />
+            </div>
+
+
+            <div class="form-group mb-10 col-md-6">
+                <label for="exampleFormControlInput1" class="form-label">@lang('site.Comment') </label>
+                <textarea name="comment" class="form-control" >{{ old('comment') }}</textarea>
+            </div>
+
+        </div>{{--  end row --}}
+        </div>
+
     </div>
     <!-- // END drawer-layout__content -->
+
+    <div class="text-right mb-5">
+        <input type="submit" name="add" class="btn btn-success" value="@lang('site.add')">
+    </div>
+</form>
 
 @stop

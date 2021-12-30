@@ -76,9 +76,9 @@
 
                             <td class="px-3">
                             <div class="d-flex align-items-center">
-                                <div class="symbol symbol-50px me-5">
+                                {{-- <div class="symbol symbol-50px me-5">
                                     <img src="{{ $c-> image }}" class="" alt="" />
-                                </div>
+                                </div> --}}
                                 <div class="d-flex flex-column">
                                     <a href="{{ route('recommendation.edit', $c->id) }}" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->title_en}}</a>
                                 </div>
@@ -113,7 +113,7 @@
 
                                 <td class="px-3">
                                     <div class="d-flex flex-column">
-                                        @if($c->active == 1)
+                                        @if($c->status == 'Active')
                                         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Check.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <polygon points="0 0 24 0 24 24 0 24"/>

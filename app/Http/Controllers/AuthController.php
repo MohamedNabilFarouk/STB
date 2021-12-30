@@ -14,6 +14,7 @@ use App\Provider;
 
 use App\User;
 use Validator;
+use Str;
 
 class AuthController extends Controller
 {
@@ -74,18 +75,22 @@ class AuthController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         $data = $request->all();
+        $data['code'] = Str::random(10);
         // $user = User::create(array_merge(
         //             $validator->validated(),
         //             ['password' => bcrypt($request->password)],
         //             $user->attachRole(5);
         //         ));
-
+        // $code= Str::random(10);
+    //  dd($data);
         $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+            'code'  => $data['code'],
         ]);
+
 
         $user->attachRole(5); // customer default
 
@@ -108,6 +113,21 @@ class AuthController extends Controller
             $user->update(['fcm_token'=> $fcm_token]);
             }
 
+// add points
+         if($request->aff_code){
+            $code_owner =  User::where('code',$request->aff_code)->first();
+            $new_user= $user;
+            if(isset($code_owner)){
+                    $code_owner->balance += 100;
+                    $new_user->balance += 100;
+                    $code_owner->save();
+                    $new_user->save();
+            }else{
+                return response()->json(['success'=>'false', 'error'=>'الكود غير صحيح']);
+            }
+         }
+          
+// end add pints
         return $this->respondWithToken($token);
 
     }

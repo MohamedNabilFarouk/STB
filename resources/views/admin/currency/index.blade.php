@@ -8,7 +8,7 @@
         <!--begin::Page title-->
         <div class="d-flex align-items-center me-3">
             <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">@lang('site.maincategories')
+            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">@lang('site.currencies')
             <!--begin::Separator-->
             <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
             <!--end::Separator-->
@@ -27,13 +27,13 @@
 @section('content')
 
 <div class="card rounded mb-5 mb-xl-8 shadow-lg">
-     <!--begin::Header-->
+    <!--begin::Header-->
     <div class="card-header rounded border-0 pt-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label fw-bolder fs-3 mb-1">@lang('site.All') @lang('site.maincategories')</span>
+            <span class="card-label fw-bolder fs-3 mb-1">@lang('site.All') @lang('site.currencies')</span>
         </h3>
         <div class="card-toolbar">
-            <a href="{{route('maincategories.create')}}" class="btn btn-sm btn-light-primary">
+            <a href="{{route('currency.create')}}" class="btn btn-sm btn-light-primary">
             <!--begin::Svg Icon | path: icons/stockholm/Communication/Add-user.svg-->
             <span class="svg-icon svg-icon-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -41,7 +41,7 @@
                     <path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
                 </svg>
             </span>
-            <!--end::Svg Icon-->@lang('site.add') @lang('site.maincategory') +</a>
+            <!--end::Svg Icon-->@lang('site.add') @lang('site.currency') +</a>
         </div>
     </div>
     <!--end::Header-->
@@ -54,40 +54,41 @@
                 <!--begin::Table head-->
                 <thead>
                     <tr class="text-center border-3 fw-bolder text-muted bg-light">
-                        <th class="ps-4 min-w-325px rounded-start">@lang('site.maincategory')</th>
-                        <!-- <th class="min-w-125px">Product Name En</th>
-                        <th class="min-w-125px">Name Ar</th> -->
-                        <th class="min-w-150px">@lang('site.status')</th>
-                        <th class="min-w-200px rounded-end">@lang('site.actions')</th>
+
+                        <th class="min-w-125px"> @lang('site.name') </th>
+                        <th class="min-w-125px">@lang('site.code')</th>
+                        <th class="min-w-200px ">@lang('site.actions')</th>
                     </tr>
                 </thead>
                 <!--end::Table head-->
                 <!--begin::Table body-->
                 <tbody>
-                @foreach($categories as $c)
+                @foreach($Currencies as $c)
                     <tr class="text-center border-3 m-auto">
                          <td class="px-3">
                             <div class="d-flex align-items-center">
-                                <div class="symbol symbol-50px me-5">
-                                    <img src="{{ $c-> image }}" class="" alt="" />
-                                </div>
+
                                 <div class="d-flex flex-column">
-                                    <a href="{{ route('maincategories.edit', $c->id) }}" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->name_en}}</a>
-                                    <span class="text-muted fw-bold text-muted d-block fs-7">{{$c->name_ar}}</span>
+                                    <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{$c->name}}</a>
                                 </div>
                             </div>
                         </td>
 
                          <td class="px-3">
-                        @if($c->status == 1)
-                                    <span class="badge badge-light-primary fs-7 fw-bold">@lang('site.Active')</span>
-                                    @else
-                                    <span class="badge badge-light-primary fs-7 fw-bold">@lang('site.Non Active')</span>
-                        </td>
-                        @endif
-                         <td class="border text-center">
+                            <div class="d-flex align-items-center">
 
-                            <a href="{{ route('maincategories.edit', $c->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                <div class="d-flex flex-column">
+                                    {{$c->code}}
+                                </div>
+                            </div>
+                        </td>
+
+
+
+
+                            <td>
+
+                            <a href="{{ route('currency.edit', $c->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                 <!--begin::Svg Icon | path: icons/stockholm/Communication/Write.svg-->
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -97,7 +98,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                             </a>
-                            <form action="{{ route('maincategories.destroy', $c->id) }}" method="post" id='delform' style="display: inline-block">
+                            <form action="{{ route('currency.destroy', $c->id) }}" method="post" id='delform' style="display: inline-block">
                                 @csrf
                                 @method('delete')
 
@@ -118,7 +119,8 @@
     <!--begin::Body-->
 </div>
 <!--end::Tables Widget 11-->
-{!! $categories->render() !!}
+{!! $Currencies->render() !!}
+
 @endsection
 
 

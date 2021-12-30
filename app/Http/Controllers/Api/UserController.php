@@ -6,77 +6,50 @@ use App\Http\Controllers\Controller;
 use App\Level;
 use App\Product;
 use Illuminate\Http\Request;
-use App\Wishlist;
+use App\Vip;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\OrderRecommendation;
+use App\Recommendation;
 use App\SiteSetting;
+use Carbon\Carbon as CarbonCarbon;
 use Illuminate\Support\Carbon;
-
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\orderResource;
 
 class UserController extends Controller
 {
-    public function getUserWishlist($id)
-    {
-        $wishlist = Wishlist::where('user_id', $id)->with('product')->get();
-        //  dd($wishlist[0]->product);
 
-        foreach ($wishlist as $w) {
-            $product[] = $w->product[0];
-        }
-        if (isset($product)) {
-            return response()->json(['success' => 'true', 'data' => $product]);
-        } else {
-
-            return response()->json(['success' => 'false', 'data' => 'No User Wishlist ']);
-        }
-    } // end of getUserWishlist
-
-    public function addUserWishlist(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-            'product_id' => 'required',
-
-        ]);
-
-        if ($validator->fails()) {
-
-            return response()->json(['success' => 'false', 'error' => $validator->messages()]);
-        } else {
-            $wishlist = Wishlist::where([['user_id', $request->user_id], ['product_id', $request->product_id]])->first();
-            // dd($wishlist);
-            if (empty($wishlist)) {
-                Wishlist::create($request->all());
-                return response()->json(['success' => 'true', 'data' => 'Created Successfully']);
-            } else {
-                $wishlist->delete();
-                return response()->json(['success' => 'true', 'data' => 'deleted Successfully']);
-            }
-        }
-    } // end of addUserWishlist
 
 
     public function isFav(Request $request)
     {
-        $wishlist = Wishlist::where([['product_id', $request->product_id], ['user_id', $request->user_id]])->first();
-        if (isset($wishlist)) {
+
+
+        $recommendations = Recommendation::all();
+
+        foreach($recommendations as $index=>$r){
+            // $data[] = $r;
+            foreach($r->user as $u){
+            if(($u->id ==  $request->user_id)){
+                $recommendations[$index]['is_buy'] = 1;
+            }else{
+                $recommendations[$index]['is_buy'] = 0;
+            }
+        }
+        }
+           return $recommendations;
+
+
+        if (isset($recommendations)) {
             return response()->json(['success' => 'true', 'data' => 'true']);
         } else {
             return response()->json(['success' => 'true', 'data' => 'false']);
         }
     } // end of isFav
 
-    public function searchProducts(Request $request)
-    {
-        $products = Product::where('name_en' , 'like',  '%' . $request -> search . '%')
-                ->orWhere('name_ar' , 'like',  '%' . $request -> search . '%')
-                ->get();
 
-        return response()->json(['success' => 'true', 'data' => $products]);
-
-    } // end of searchProducts
 
     public function updateUser(Request $request){
         $validator = Validator::make($request->all(), [
@@ -122,6 +95,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
            'level'=>'required',
+           'payByCoins'=>'required',
         ]);
         if ($validator->fails()) {
 
@@ -129,13 +103,26 @@ class UserController extends Controller
         } else {
             $user = User::find($request->user_id);
             $level = Level::find($request->level);
+            $data=[
+                'user_id'=>$request->user_id,
+               'service'=>'level',
+               'service_id'=>$request->level,
+
+            ];
 if($request->payByCoins == 1){
 
     // pay by coins
     if($level->price_coins <= $user->balance){
+
+        $data['type']='Coins';
+        $data['total']=$level->price_coins;
+        DB ::beginTransaction();
+        $order= OrderRecommendation::create($data);
+
         $user->level_id = $request->level;
         $user->balance -= $level->price_coins;
         $user->save();
+        DB ::commit();
         }else{
             return response()->json(['success' => 'false', 'error' => 'No Enough Coins']);
         }
@@ -143,10 +130,15 @@ if($request->payByCoins == 1){
 
 }else{
     // pay by visa
+    DB ::beginTransaction();
+    $data['type']='Mony';
+    $data['total']=$level->price;
+
+    $order= OrderRecommendation::create($data);
 
         $user->level_id = $request->level;
         $user->save();
-
+        DB ::commit();
     return 'paybyvisa';
 
     // end pay by visa
@@ -159,12 +151,12 @@ if($request->payByCoins == 1){
     }
 
 
-    public function buyVip(Request $request){
+    public function buyVip(Request $request){ // to by Vip by coins or visa
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
-            'vip' => 'required',
-            'from' => 'required',
-            'to' => 'required',
+             'vip' => 'required',
+            // 'from' => 'required',
+            // 'to' => 'required',
 
         ]);
         if ($validator->fails()) {
@@ -173,11 +165,13 @@ if($request->payByCoins == 1){
         } else {
             // payment for vip ......
             $user=User::find($request->user_id);
+            $vip = Vip::find($request->vip);
             // if paid
             $user->vip = 1;
 
-            $user->from =  Carbon::createFromFormat('Y-m-d', $request->from)->toDateTimeString();
-            $user->to =  Carbon::createFromFormat('Y-m-d', $request->to)->toDateTimeString();
+            $user->from =  Carbon::now();
+            $user->to =   Carbon::now()->addMonths($vip->months_no);
+
             $user->save();
             return response()->json(['success' => 'true' , 'data'=>$user]);
             // if not paid
@@ -185,5 +179,48 @@ if($request->payByCoins == 1){
 
         }
     }
+
+    public function updateVip(Request $request){ //to update vip state when open mobile app
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+
+            return response()->json(['success' => 'false', 'error' => $validator->messages()]);
+        } else {
+            $user = User::find($request->user_id);
+                // here code  get user with user_id
+                if(($user && ($user->vip != 0))){
+                    $current_date = CarbonCarbon::now();
+                    $expire_date = $user->to;
+                    if($expire_date < $current_date ){
+                        $user->vip = 0;
+                        $user->save();
+                    }
+                    return response()->json(['success' => 'true', 'data' => $user]);
+                }else{
+                    return response()->json(['success' => 'true', 'data' => 'no subscription in vip']);
+                }
+                // check if date < $request->date update vip to 0
+        }
+    }
+    public function addPoints(Request $request){ //to add points after watch video
+        $validator = Validator::make($request->all(), [
+            'user_id'=>['required'],
+        ]);
+
+        $user = User::find($request->user_id);
+        if(isset($user)){
+            $user->balance += 50;
+            $user->save() ;
+            return response()->json(['success' => 'true' , 'data'=>$user->balance]);
+        }else{
+            return response()->json(['success' => 'false', 'error' => 'Error in user Data']);
+        }
+
+
+    }
+
+
 
 } //end of controller

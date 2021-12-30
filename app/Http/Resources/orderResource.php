@@ -14,32 +14,25 @@ class orderResource extends JsonResource
      */
     public function toArray($request)
     {
-        // $this->order_item;
-        $items = OrderItem::where('order_id',$this->id)->with('product')->get();
-        $delivery = $this->region->fees;
-    if($this->status == 'Pending'){
-        $delivery_id = 0;
-    }else{
-        $delivery_id = $this->delivery->user_id;
-        
-    }
+        $is_buy='';
+             dd ($this->user);
+            foreach($this->user as $u){
+                // dd($u);
+                if(($u->id ==  $request->user_id)){
+                    $is_buy = 1;
+                }else{
+                    $is_buy = 0;
+                }
+            }
         // $this->user;
         // return parent::toArray($request);
         return [
-           'order_id'=>$this->id,
-           'order_status'=>$this->status,
-           'order_name'=>$this->user->name,
-           'order_address'=>$this->address,
-           'order_phone'=>$this->phone,
-           'order_total'=>$this->total,
-           'delivery'=>$delivery,
-           'resturant'=>$this->resturant->name_en,
-           'is_paid'=>$this->is_paid,
-            'delivery_id'=>$delivery_id,
-            'items'=>$items,
-            'lat'=>$this->lat,
-            'lng'=>$this->lng,
-          
+           'id'=>$this->id,
+           'name'=>$this->name,
+
+           'is_buy'=>$this->is_buy,
+
+
 
         ];
 
